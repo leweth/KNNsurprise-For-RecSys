@@ -1,22 +1,20 @@
 import requests
 import json 
 
-url =  'the htttp stuff/item_based_recommendation' #'.../endpoint'
+
+url =  'http://127.0.0.1:8000/item_based_recommendation' #'.../endpoint'
+
+input_data_for_model = {'userID': "A3DHAPM8LB4JYY"}
+response = requests.post(url, json=input_data_for_model)
 
 
-input_data_for_model = {'userID'    : "A3DHAPM8LB4JYY"}
 
-
-
-input_json = json.dumps(input_data_for_model)
-
-response = requests.post(url, input_json)
-
+# Check if the request was successful (status code 200)
 if response.status_code == 200:
-    # Parse the JSON response into a Python list
-    recommended_products = response.json()
+    # Convert the JSON response to a Python list
+    recommendation_array = response.json()
     
-    # Print the recommended products
-    print("Recommended products:", recommended_products)
+    # Print the array
+    print(recommendation_array)
 else:
     print("Error:", response.status_code)
