@@ -28,15 +28,11 @@ trainset = pickle.load(open('trainset.pkl', 'rb'))
 
 
 
-
+#La méthode POST d'HTML pour envoyer les données à un ressource spécifuqe pour les traiter. 
 @app.post('/item_based_recommendation')
 def item_pred(input_parameters : model_input):
-
-
-    input_data = input_parameters.json()
-    input_dictionnary = json.loads(input_data)
     
-    rawID = input_dictionnary['itemID']
+    rawID = input_parameters.itemID
 
 
     k = 15  # Number of similar items to retrieve
